@@ -40,9 +40,9 @@ jobs:
               echo "Azure resource group created"
             fi
 
-        - uses: azure/arm-deploy@v1
-          with:
-            resourceGroupName: ${{ env.ResourceGroupName }}
-            template: ./azuredeploy.json
-            parameters: |
-              resourcePrefix=mining
+      - uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: ${{ env.ResourceGroupName }}
+          template: ./azuredeploy.json
+          parameters: |
+            resourcePrefix=mining
