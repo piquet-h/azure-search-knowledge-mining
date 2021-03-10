@@ -49,6 +49,7 @@ jobs:
             fi
 
       - uses: azure/arm-deploy@v1
+        id: deploy
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: ./azuredeploy.json
@@ -75,5 +76,5 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{env.APP_NAME}}-site
+        app-name: ${{jobs.build-infrastructure.steps.deploy.outputs.appName}}
         package: '${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}'
