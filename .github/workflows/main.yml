@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ResourceGroupLocation: "Australia East"
-      ResourceGroupName: Mining-RG
+      ResourceGroupName: KnowledgeMining-RG
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
