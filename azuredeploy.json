@@ -91,6 +91,7 @@
         "hostingPlanName": "[concat(parameters('resourcePrefix'), '-plan')]",
         "storageAccountName": "[concat(parameters('resourcePrefix'), 'str')]",
         "websiteName": "[concat(parameters('resourcePrefix'), '-site')]",
+        "mediaServicesName" : "[concat(parameters('resourcePrefix'), '-media')]",
         "appInsightsName": "[concat(parameters('resourcePrefix'), '-app-insights')]",
         "searchServiceName": "[concat(parameters('resourcePrefix'), '-search-service')]",
         "cognitiveServicesAccountName": "[concat(parameters('resourcePrefix'), '-cognitive-services')]",
@@ -165,6 +166,21 @@
             "kind": "CognitiveServices",
             "location": "[toLower(replace(parameters('location'),' ', ''))]",
             "properties": {}
+        },
+        {
+            "name" : "[variables('mediaServicesName')]",
+            "type" : "Microsoft.Media/mediaServices",
+            "apiVersion": "2018-07-01",
+            "location" : "[toLower(replace(parameters('location'),' ', ''))]",
+            "dependsOn" : [
+                "variables('storageAccountName')"
+            ],
+            "properties":{
+                "storageAccounts": [{
+                    "id": "[resourceId('microsoft.storage/storageaccounts/', variables('storageAccountName'))]",
+                    "type": "Primary"
+                }]
+            }
         },
         {
             "apiVersion": "2016-03-01",
