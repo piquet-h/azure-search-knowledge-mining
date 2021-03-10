@@ -62,7 +62,7 @@
             "allowedValues": [
                 "East Asia",
                 "Southeast Asia",
-                "Australia East",
+                "Australia East", "AustraliaEast",
                 "Brazil South",
                 "Canada Central",
                 "North Europe",
