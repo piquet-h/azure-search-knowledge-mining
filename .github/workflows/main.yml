@@ -53,7 +53,7 @@ jobs:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: ./azuredeploy.json
           parameters: resourcePrefix=${{env.APP_NAME}} location=${{env.ResourceGroupLocation}}
-          deploymentMode: complete
+          deploymentMode: complete 
 
   build-webapp:
     needs: build-infrastructure
