@@ -56,6 +56,7 @@ jobs:
           deploymentMode: complete
 
   build-webapp:
+    needs: build-infrastructure
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
