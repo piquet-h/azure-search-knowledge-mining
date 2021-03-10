@@ -66,8 +66,8 @@ jobs:
         dotnet-version: "3.1.x"
 
     - run: |
-        dotnet build
-        dotnet publish -c Release -o ${{env.APP_NAME}}
+        dotnet build -c Release "./02 - Web UI Template/CognitiveSearch.Template.sln"
+        dotnet publish -c Release -o ${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}
 
     - uses: azure/webapps-deploy@v2
       with:
