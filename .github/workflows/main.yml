@@ -71,4 +71,4 @@ jobs:
     - uses: azure/webapps-deploy@2
       with:
         app-name: ${{env.AppName}}
-        package: '${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}''
+        package: '${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}'
