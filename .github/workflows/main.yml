@@ -48,7 +48,5 @@ jobs:
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: ./azuredeploy.json
-          parameters: |
-            resourcePrefix=kmvi
-            location=${{env.location}}
+          parameters: resourcePrefix=kmvi location=${{env.location}}
           deploymentMode: complete
