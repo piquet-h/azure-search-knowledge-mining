@@ -55,6 +55,8 @@ jobs:
           template: ./azuredeploy.json
           parameters: resourcePrefix=${{env.APP_NAME}} location=${{env.ResourceGroupLocation}}
           deploymentMode: complete 
+      
+      - run: echo ${{ steps.deploy.outputs.appName }}
 
   build-webapp:
     needs: build-infrastructure
@@ -76,5 +78,5 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{needs.deploy.outputs.appName}}
+        app-name: ${{env.APP_NAME}}-site
         package: '${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}'
