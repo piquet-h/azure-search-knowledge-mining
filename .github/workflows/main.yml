@@ -21,7 +21,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
-      ResourceGroupLocation: australiasoutheast
+      ResourceGroupLocation: "Australia East"
       ResourceGroupName: Mining-RG
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -50,3 +50,5 @@ jobs:
           template: ./azuredeploy.json
           parameters: |
             resourcePrefix=kmvi
+            location="Australia East"
+          deploymentMode: complete
