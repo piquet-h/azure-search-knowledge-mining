@@ -213,5 +213,11 @@
                 }
             }
         }
-    ]
+    ],
+    "outputs" : {
+        "appName" : {
+            "type" : "string",
+            "value" : "[variables('websiteName')]"
+        }
+    }
 }
