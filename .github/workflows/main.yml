@@ -69,6 +69,10 @@ jobs:
         dotnet build -c Release "./02 - Web UI Template/CognitiveSearch.Template.sln"
         dotnet publish -c Release "./02 - Web UI Template/CognitiveSearch.Template.sln" -o ${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}
 
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     - uses: azure/webapps-deploy@v2
       with:
         app-name: ${{env.AppName}}
