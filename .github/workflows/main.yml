@@ -49,4 +49,4 @@ jobs:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: ./azuredeploy.json
           parameters: |
-            resourcePrefix=mining
+            resourcePrefix=kmvi-
