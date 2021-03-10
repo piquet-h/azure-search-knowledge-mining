@@ -173,7 +173,7 @@
             "apiVersion": "2018-07-01",
             "location" : "[toLower(replace(parameters('location'),' ', ''))]",
             "dependsOn" : [
-                "variables('storageAccountName')"
+                "[variables('storageAccountName')]"
             ],
             "properties":{
                 "storageAccounts": [{
