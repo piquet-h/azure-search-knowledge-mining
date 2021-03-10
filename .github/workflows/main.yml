@@ -68,7 +68,7 @@ jobs:
         dotnet build --Configuration Release
         dotnet publish -c Release -o ${{env.APP_NAME}}
 
-    - uses: azure/webapps-deploy@2
+    - uses: azure/webapps-deploy@v2
       with:
         app-name: ${{env.AppName}}
         package: '${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}'
