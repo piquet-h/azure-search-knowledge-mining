@@ -113,13 +113,30 @@
         {
             "name": "[variables('storageAccountName')]",
             "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2018-07-01",
+            "apiVersion": "2019-06-01",
             "location": "[parameters('location')]",
             "kind": "StorageV2",
             "sku": {
                 "name": "[parameters('storageAccountType')]",
                 "tier": "Standard"
-            }
+            },
+            "resources" : [{
+                "type" : "blobServices/containers",
+                "apiVersion": "2019-06-01",
+                "name" : "default/video-drop",
+                "dependsOn" : ["[variables('storageAccountName')]"],
+                "properties": {
+                    "publicAccess" : "Container"
+                }
+            }, {
+                "type" : "blobServices/containers",
+                "apiVersion" : "2019-06-01",
+                "name" : "default/video-insights",
+                "dependsOn": ["[variables('storageAccountName')]"],
+                "properties" : {
+                    "publicAccess" : "Container"
+                }
+            }]
         },
         {
             "apiVersion": "2016-08-01",
