@@ -210,18 +210,7 @@
             "dependsOn" : [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
-            "resources" : [{
-                "type" : "streamingEndpoints",
-                "apiVersion" : "2020-05-01",
-                "name" : "[concat(variables('mediaServicesName'), '-stream')]",
-                "location" : "[toLower(replace(parameters('location'),' ', ''))]",
-                "properties" : {
-                    "scaleUnits" : 1
-                },
-                "dependsOn" : [
-                    "[resourceId('Microsoft.Media/mediaServices', variables('mediaServicesName'))]"
-                ]
-            }]
+            "resources" : []
         },
         {
             "apiVersion": "2016-03-01",
