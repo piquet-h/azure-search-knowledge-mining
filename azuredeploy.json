@@ -198,6 +198,7 @@
             "type" : "Microsoft.Media/mediaServices",
             "apiVersion": "2020-05-01",
             "location" : "[toLower(replace(parameters('location'),' ', ''))]",
+            "identity" : { "type" : "SystemAssigned"},
             "dependsOn" : [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
@@ -205,10 +206,7 @@
                 "storageAccounts": [{
                     "id": "[resourceId('microsoft.storage/storageaccounts/', variables('storageAccountName'))]",
                     "type": "Primary"
-                }],
-                "identity" : {
-                    "type" : "SystemAssigned"
-                }
+                }]
             },
             "resources" : [{
                 "type" : "streamingEndpoints",
