@@ -90,7 +90,7 @@ jobs:
     needs: build-infrastructure
     runs-on: ubuntu-latest
     env: 
-      AZURE_FUNCTIONAPP_NAME: kvmi-function-app
+      AZURE_FUNCTIONAPP_NAME: kmvi-function-app
       AZURE_FUNCTIONAPP_PACKAGE_PATH: ./01.5 - Video Indexer
     steps: 
     - uses: actions/checkout@v2
