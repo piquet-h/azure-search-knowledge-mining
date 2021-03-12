@@ -62,7 +62,8 @@
             "allowedValues": [
                 "East Asia",
                 "Southeast Asia",
-                "Australia East", "AustraliaEast",
+                "Australia East",
+                "AustraliaEast",
                 "Brazil South",
                 "Canada Central",
                 "North Europe",
@@ -91,11 +92,11 @@
         "hostingPlanName": "[concat(parameters('resourcePrefix'), '-plan')]",
         "storageAccountName": "[concat(parameters('resourcePrefix'), 'str')]",
         "websiteName": "[concat(parameters('resourcePrefix'), '-site')]",
-        "mediaServicesName" : "[concat(parameters('resourcePrefix'), 'media')]",
+        "mediaServicesName": "[concat(parameters('resourcePrefix'), 'media')]",
         "appInsightsName": "[concat(parameters('resourcePrefix'), '-app-insights')]",
         "searchServiceName": "[concat(parameters('resourcePrefix'), '-search-service')]",
         "cognitiveServicesAccountName": "[concat(parameters('resourcePrefix'), '-cognitive-services')]",
-        "functionAppName":"[concat(parameters('resourcePrefix'), '-function-app')]"
+        "functionAppName": "[concat(parameters('resourcePrefix'), '-function-app')]"
     },
     "resources": [
         {
@@ -120,31 +121,35 @@
                 "name": "[parameters('storageAccountType')]",
                 "tier": "Standard"
             },
-            "resources" : [{
-                "type" : "blobServices/containers",
-                "apiVersion": "2019-06-01",
-                "name" : "default/video-drop",
-                "dependsOn" : ["[variables('storageAccountName')]"],
-                "properties": {
-                    "publicAccess" : "Container"
+            "resources": [
+                {
+                    "type": "blobServices/containers",
+                    "apiVersion": "2019-06-01",
+                    "name": "default/video-drop",
+                    "dependsOn": [ "[variables('storageAccountName')]" ],
+                    "properties": {
+                        "publicAccess": "Container"
+                    }
+                },
+                {
+                    "type": "blobServices/containers",
+                    "apiVersion": "2019-06-01",
+                    "name": "default/video-insights",
+                    "dependsOn": [ "[variables('storageAccountName')]" ],
+                    "properties": {
+                        "publicAccess": "Container"
+                    }
+                },
+                {
+                    "type": "blobServices/containers",
+                    "apiVersion": "2019-06-01",
+                    "name": "default/documents",
+                    "dependsOn": [ "[variables('storageAccountName')]" ],
+                    "properties": {
+                        "publicAccess": "Container"
+                    }
                 }
-            }, {
-                "type" : "blobServices/containers",
-                "apiVersion" : "2019-06-01",
-                "name" : "default/video-insights",
-                "dependsOn": ["[variables('storageAccountName')]"],
-                "properties" : {
-                    "publicAccess" : "Container"
-                }
-            }, {
-                "type" : "blobServices/containers",
-                "apiVersion" : "2019-06-01",
-                "name" : "default/documents",
-                "dependsOn": ["[variables('storageAccountName')]"],
-                "properties" : {
-                    "publicAccess" : "Container"
-                }
-            }]
+            ]
         },
         {
             "apiVersion": "2016-08-01",
@@ -194,23 +199,25 @@
             "properties": {}
         },
         {
-            "name" : "[variables('mediaServicesName')]",
-            "type" : "Microsoft.Media/mediaServices",
+            "name": "[variables('mediaServicesName')]",
+            "type": "Microsoft.Media/mediaServices",
             "apiVersion": "2020-05-01",
-            "location" : "[toLower(replace(parameters('location'),' ', ''))]",
-            "properties":{
-                "storageAccounts": [{
-                    "id": "[resourceId('microsoft.storage/storageaccounts/', variables('storageAccountName'))]",
-                    "type": "Primary"
-                }]
+            "location": "[toLower(replace(parameters('location'),' ', ''))]",
+            "properties": {
+                "storageAccounts": [
+                    {
+                        "id": "[resourceId('microsoft.storage/storageaccounts/', variables('storageAccountName'))]",
+                        "type": "Primary"
+                    }
+                ]
             },
-            "identity" : { 
-                "type" : "SystemAssigned"
+            "identity": {
+                "type": "SystemAssigned"
             },
-            "dependsOn" : [
+            "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
-            "resources" : []
+            "resources": []
         },
         {
             "apiVersion": "2016-03-01",
@@ -239,28 +246,40 @@
                             "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
                         },
-                      {
-                        "name": "WEBSITE_CONTENTSHARE",
-                        "value": "[toLower(variables('functionAppName'))]"
-                      },
+                        {
+                            "name": "WEBSITE_CONTENTSHARE",
+                            "value": "[toLower(variables('functionAppName'))]"
+                        },
                         {
                             "name": "FUNCTIONS_WORKER_RUNTIME",
-                            "value": "node"
+                            "value": "python"
                         },
                         {
-                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
-                            "value": "10.14.1"
+                            "name": "blob_container",
+                            "value": "video-insights"
                         },
                         {
-                            "name": "FUNCTIONS_EXTENSION_VERSION",
-                            "value": "~2"
+                            "name": "blob_account",
+                            "value": "[variables('storageAccountName')]"
+                        },
+                        {
+                            "name": "blob_key",
+                            "value": "[listKeys(variables('storageAccountName'), '2019-06-01').keys[0].value]"
+                        },
+                        {
+                            "name": "blob_container_source",
+                            "value": "video-drop"
+                        },
+                        {
+                            "name": "entities",
+                            "value": "transcript,ocr,keywords,topics,faces,labels,brands,namedLocations,namedPeople"
                         }
                     ]
                 }
             }
         }
     ],
-    "outputs" : {
+    "outputs": {
 
     }
 }
