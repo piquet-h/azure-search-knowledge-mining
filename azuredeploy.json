@@ -23,7 +23,7 @@
         },
         "hostingPlanSku": {
             "type": "string",
-            "defaultValue": "F1",
+            "defaultValue": "B1",
             "allowedValues": [
                 "F1",
                 "D1",
@@ -100,13 +100,14 @@
     },
     "resources": [
         {
-            "apiVersion": "2016-09-01",
+            "apiVersion": "2020-06-01",
             "name": "[variables('hostingPlanName')]",
             "type": "Microsoft.Web/serverfarms",
             "location": "[parameters('location')]",
             "sku": {
                 "name": "[parameters('hostingPlanSku')]"
             },
+            "kind" : "linux",
             "properties": {
                 "name": "[variables('hostingPlanName')]"
             }
@@ -161,7 +162,10 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
             "properties": {
-                "serverFarmId": "[variables('hostingPlanName')]"
+                "serverFarmId": "[variables('hostingPlanName')]",
+                "siteConfig" : {
+                    "linuxFxVersion" : "DOTNETCORE|3.0"
+                }
             }
         },
         {
@@ -233,6 +237,7 @@
             "properties": {
                 "serverFarmId": "[variables('hostingPlanName')]",
                 "siteConfig": {
+                    "linuxFxVersion" : "DOTNETCORE|3.0",
                     "appSettings": [
                         {
                             "name": "AzureWebJobsStorage",
