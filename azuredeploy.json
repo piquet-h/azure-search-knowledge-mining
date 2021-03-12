@@ -274,7 +274,11 @@
     "outputs" : {
         "appName" : {
             "type" : "string",
-            "value" : "[variables('websiteName')]"
-        }   
+            "value" : "[resourceId('Microsoft.Web/sites', variables('websiteName')).name]"
+        },
+        "functionAppName" : {
+            "type" : "string",
+            "value" : "[resourceId('Microsoft.Web/sites', variables('functionAppName')).name]"
+        }
     }
 }

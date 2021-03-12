@@ -61,10 +61,11 @@ jobs:
   build-webapp:
     needs: build-infrastructure
     runs-on: ubuntu-latest
+    env: 
+      SITE_NAME: ${{needs.deploy.outputs.appName}}
     steps:
     - run: |
-        echo ${{needs.deploy.outputs.appName}}
-        echo ${{needs.deploy.outputs.mediaServicePrimaryKey}}
+        echo "Site name = ${{env.SITE_NAME}}"
 
     - uses: actions/checkout@v2
 
@@ -84,3 +85,38 @@ jobs:
       with:
         app-name: ${{env.APP_NAME}}-site
         package: '${{env.AZURE_WEBAPP_PACKAGE_PATH}}/${{env.APP_NAME}}'
+
+  build-video:
+    env: 
+      AZURE_FUNCTIONAPP_NAME: kvmi-function-app
+      AZURE_FUNCTIONAPP_PACKAGE_PATH: ./01.5 - Video Indexer
+
+
+    needs: build-infrastructure
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-python@v1
+      with: 
+        python-version: "3.7"
+
+    - name: 'Resolve dependences'
+      shell: bash
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt --target=".python_packages/lib/site-packages"
+        popd
+
+    - uses: actions/login@v1
+      with: 
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
