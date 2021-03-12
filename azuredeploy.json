@@ -123,7 +123,7 @@
             "resources" : [{
                 "type" : "blobServices/containers",
                 "apiVersion": "2019-06-01",
-                "name" : "default/video-drop",
+                "name" : "video-drop",
                 "dependsOn" : ["[variables('storageAccountName')]"],
                 "properties": {
                     "publicAccess" : "Container"
@@ -131,7 +131,7 @@
             }, {
                 "type" : "blobServices/containers",
                 "apiVersion" : "2019-06-01",
-                "name" : "default/video-insights",
+                "name" : "video-insights",
                 "dependsOn": ["[variables('storageAccountName')]"],
                 "properties" : {
                     "publicAccess" : "Container"
@@ -139,7 +139,7 @@
             }, {
                 "type" : "blobServices/containers",
                 "apiVersion" : "2019-06-01",
-                "name" : "default/documents",
+                "name" : "documents",
                 "dependsOn": ["[variables('storageAccountName')]"],
                 "properties" : {
                     "publicAccess" : "Container"
@@ -152,7 +152,8 @@
             "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
+                "[resourceId('Microsoft.Web/sites', variables('storageAccountName'))]"
             ],
             "properties": {
                 "serverFarmId": "[variables('hostingPlanName')]"
@@ -195,17 +196,32 @@
         {
             "name" : "[variables('mediaServicesName')]",
             "type" : "Microsoft.Media/mediaServices",
-            "apiVersion": "2018-07-01",
+            "apiVersion": "2020-05-01",
             "location" : "[toLower(replace(parameters('location'),' ', ''))]",
             "dependsOn" : [
-                "[variables('storageAccountName')]"
+                "[resourceId('Microsoft.Web/sites', variables('storageAccountName'))]"
             ],
             "properties":{
                 "storageAccounts": [{
                     "id": "[resourceId('microsoft.storage/storageaccounts/', variables('storageAccountName'))]",
                     "type": "Primary"
-                }]
-            }
+                }],
+                "identity" : {
+                    "type" : "SystemAssigned"
+                }
+            },
+            "resources" : [{
+                "type" : "streamingEndpoints",
+                "apiVersion" : "2020-05-01",
+                "name" : "default",
+                "location" : "[toLower(replace(parameters('location'),' ', ''))]",
+                "properties" : {
+                    "scaleUnits" : 1
+                },
+                "dependsOn" : [
+                    "[resourceId('Microsoft.Media/mediaServices', variables('mediaServicesName'))]"
+                ]
+            }]
         },
         {
             "apiVersion": "2016-03-01",
@@ -259,6 +275,10 @@
         "appName" : {
             "type" : "string",
             "value" : "[variables('websiteName')]"
+        }, 
+        "mediaServicePrimaryKey": {
+        "type": "string",
+        "value": "[listKeys(resourceId('Microsoft.Media/mediaservices', variables('mediaServicesName')), '2020-05-01').primaryKey]"
         }
     }
 }
