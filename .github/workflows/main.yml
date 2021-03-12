@@ -63,9 +63,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo ${{jobs.infrastructure.deploy.outputs.appName}}
-        echo ${{jobs.infrastructure.deploy.outputs.mediaServicePrimaryKey}}
-        
+        echo ${{needs.deploy.outputs.appName}}
+        echo ${{needs.deploy.outputs.mediaServicePrimaryKey}}
+
     - uses: actions/checkout@v2
 
     - uses: actions/setup-dotnet@v1
