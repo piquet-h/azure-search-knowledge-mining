@@ -123,7 +123,7 @@
             "resources" : [{
                 "type" : "blobServices/containers",
                 "apiVersion": "2019-06-01",
-                "name" : "video-drop",
+                "name" : "default/video-drop",
                 "dependsOn" : ["[variables('storageAccountName')]"],
                 "properties": {
                     "publicAccess" : "Container"
@@ -131,7 +131,7 @@
             }, {
                 "type" : "blobServices/containers",
                 "apiVersion" : "2019-06-01",
-                "name" : "video-insights",
+                "name" : "default/video-insights",
                 "dependsOn": ["[variables('storageAccountName')]"],
                 "properties" : {
                     "publicAccess" : "Container"
@@ -139,7 +139,7 @@
             }, {
                 "type" : "blobServices/containers",
                 "apiVersion" : "2019-06-01",
-                "name" : "documents",
+                "name" : "default/documents",
                 "dependsOn": ["[variables('storageAccountName')]"],
                 "properties" : {
                     "publicAccess" : "Container"
