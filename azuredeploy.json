@@ -209,19 +209,19 @@
             },
             "dependsOn" : [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
-            ]
-        },
-        {
-            "name" : "[concat(variables('mediaServicesName'), '-stream')]",
-            "type" : "Microsoft.Media/mediaservices/streamingEndpoints",
-            "apiVersion" : "2020-05-01",
-            "location" : "[toLower(replace(parameters('location'),' ', ''))]",
-            "properties" : {
-                "scaleUnits" : 1
-            },
-            "dependsOn" : [
-                "[resourceId('Microsoft.Media/mediaServices', variables('mediaServicesName'))]"
-            ]
+            ],
+            "resources" : [{
+                "type" : "streamingEndpoints",
+                "apiVersion" : "2020-05-01",
+                "name" : "[concat(variables('mediaServicesName'), '-stream')]",
+                "location" : "[toLower(replace(parameters('location'),' ', ''))]",
+                "properties" : {
+                    "scaleUnits" : 1
+                },
+                "dependsOn" : [
+                    "[resourceId('Microsoft.Media/mediaServices', variables('mediaServicesName'))]"
+                ]
+            }]
         },
         {
             "apiVersion": "2016-03-01",
