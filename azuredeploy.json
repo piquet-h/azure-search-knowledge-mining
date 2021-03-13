@@ -256,16 +256,12 @@
                             "value": "[reference(resourceId('microsoft.insights/components/', variables('appInsightsName')), '2015-05-01').InstrumentationKey]"
                         },
                         {
-                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1, ';')]"
-                        },
-                        {
-                            "name": "WEBSITE_CONTENTSHARE",
-                            "value": "[toLower(variables('functionAppName'))]"
-                        },
-                        {
                             "name": "FUNCTIONS_WORKER_RUNTIME",
                             "value": "python"
+                        },
+                        {
+                            "name" : "FUNCTIONS_EXTENSION_VERSION",
+                            "value" : "~3"
                         },
                         {
                             "name": "blob_container",
