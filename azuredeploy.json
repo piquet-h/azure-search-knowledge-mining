@@ -162,10 +162,7 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
             "properties": {
-                "serverFarmId": "[variables('hostingPlanName')]",
-                "siteConfig" : {
-                    "linuxFxVersion" : "DOTNETCORE|3.1"
-                }
+                "serverFarmId": "[variables('hostingPlanName')]"
             }
         },
         {
