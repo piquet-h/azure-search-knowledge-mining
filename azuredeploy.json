@@ -58,7 +58,7 @@
         },
         "location": {
             "type": "string",
-            "defaultValue": "South Central US",
+            "defaultValue": "Australia East",
             "allowedValues": [
                 "East Asia",
                 "Southeast Asia",
@@ -109,7 +109,8 @@
             },
             "kind" : "linux",
             "properties": {
-                "name": "[variables('hostingPlanName')]"
+                "name": "[variables('hostingPlanName')]",
+                "reserved" : true
             }
         },
         {
@@ -165,7 +166,13 @@
             "properties": {
                 "serverFarmId": "[variables('hostingPlanName')]",
                 "siteConfig" : {
-                    "linuxFxVersion" : "DOTNETCORE|3.1"
+                    "linuxFxVersion" : "DOTNETCORE|3.1",
+                    "metadata": [
+						{
+							"name": "CURRENT_STACK",
+							"value": "dotnetcore"
+						}
+					]
                 }
             }
         },
