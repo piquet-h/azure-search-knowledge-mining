@@ -162,7 +162,10 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
             "properties": {
-                "serverFarmId": "[variables('hostingPlanName')]"
+                "serverFarmId": "[variables('hostingPlanName')]",
+                "siteConfig" : {
+                    "linuxFxVersion" : "DOTNETCORE|3.1"
+                }
             }
         },
         {
@@ -225,7 +228,7 @@
             "type": "Microsoft.Web/sites",
             "name": "[variables('functionAppName')]",
             "location": "[parameters('location')]",
-            "kind": "functionapp",
+            "kind": "functionapp,linux",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]",
                 "[resourceId('Microsoft.Insights/components', variables('appInsightsName'))]",
