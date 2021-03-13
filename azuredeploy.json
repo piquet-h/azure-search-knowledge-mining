@@ -157,6 +157,7 @@
             "name": "[variables('websiteName')]",
             "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
+            "kind" : "app,linux",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
