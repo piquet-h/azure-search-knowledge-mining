@@ -164,7 +164,7 @@
             "properties": {
                 "serverFarmId": "[variables('hostingPlanName')]",
                 "siteConfig" : {
-                    "linuxFxVersion" : "DOTNETCORE|3.0"
+                    "linuxFxVersion" : "DOTNETCORE|3.1"
                 }
             }
         },
@@ -237,7 +237,7 @@
             "properties": {
                 "serverFarmId": "[variables('hostingPlanName')]",
                 "siteConfig": {
-                    "linuxFxVersion" : "DOTNETCORE|3.0",
+                    "linuxFxVersion" : "PYTHON|3.7",
                     "appSettings": [
                         {
                             "name": "AzureWebJobsStorage",
