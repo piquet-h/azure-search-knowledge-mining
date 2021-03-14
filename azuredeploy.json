@@ -247,6 +247,7 @@
             ],
             "properties": {
                 "serverFarmId": "[variables('hostingPlanName')]",
+                "alwaysOn" : true,
                 "siteConfig": {
                     "linuxFxVersion" : "PYTHON|3.7",
                     "appSettings": [
