@@ -282,6 +282,50 @@
                         {
                             "name": "entities",
                             "value": "transcript,ocr,keywords,topics,faces,labels,brands,namedLocations,namedPeople"
+                        }, 
+                        {
+                            "name": "function_url",
+                            "value" : ""
+                        },
+                        {
+                            "name" : "search_account",
+                            "value" : "[variables('searchServiceName')]"
+                        },
+                        {
+                            "name" : "search_index",
+                            "value" : ""
+                        },
+                        {
+                            "name" : "search_api_key",
+                            "value" : "[listQueryKeys(resourceId('Microsoft.Search/searchServices', variables('searchServiceName')), '2015-08-19' )[0].key]"
+                        },
+                        {
+                            "name" : "search_api_version",
+                            "value" : "2019-05-06"
+                        },
+                        {
+                            "name" : "video_indexer_account_id",
+                            "value" : ""
+                        },
+                        {
+                            "name" : "video_indexer_api_key",
+                            "value" : ""
+                        },
+                        {
+                            "name" : "video_indexer_endpoint",
+                            "value" : "https://api.videoindexer.ai"
+                        },
+                        {
+                            "name" : "video_indexer_location",
+                            "value" : "Australia East"
+                        },
+                        {
+                            "name" : "video_indexer_location_url_prefix",
+                            "value" : "www"
+                        },
+                        {
+                            "name" : "videoknowledgemining_STORAGE",
+                            "value" : "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2019-06-01').keys[0].value)]"
                         }
                     ]
                 }
@@ -289,6 +333,9 @@
         }
     ],
     "outputs": {
-
+        "site-name" : {
+            "type": "string",
+            "value" : "[reference(resourceId('Microsoft.Web/sites', variables('websiteName'))).name]"
+        }
     }
 }
