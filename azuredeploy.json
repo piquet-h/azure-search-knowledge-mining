@@ -273,7 +273,7 @@
                         },
                         {
                             "name": "blob_key",
-                            "value": "[listKeys(variables('storageAccountName'), '2019-06-01').keys[0].value]"
+                            "value": "[listkeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2019-06-01').keys[0].value]"
                         },
                         {
                             "name": "blob_container_source",
