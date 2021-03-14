@@ -53,7 +53,7 @@ jobs:
         with:
           resourceGroupName: ${{ env.ResourceGroupName }}
           template: ./azuredeploy.json
-          parameters: resourcePrefix=${{env.APP_NAME}} location=${{env.ResourceGroupLocation}}
+          parameters: resourcePrefix=${{env.APP_NAME}} location=${{env.ResourceGroupLocation}} videoIndexerApiKey=${{secrets.VIDEO_INDEXER_API_KEY}}
           deploymentMode: complete 
       
       - run: echo ${{ steps.deploy.outputs.appName }}

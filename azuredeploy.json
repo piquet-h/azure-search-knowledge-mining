@@ -86,6 +86,9 @@
             "metadata": {
                 "description": "Location where the Azure Search service and Cognitive Services account will be deployed."
             }
+        },
+        "videoIndexerApiKey":{
+            "type": "string"
         }
     },
     "variables": {
@@ -285,7 +288,7 @@
                         }, 
                         {
                             "name": "function_url",
-                            "value" : ""
+                            "value" : "https://kmvi-function-app.azurewebsites.net/api/video-indexer-callback?code=wm6Y7aUgOOS5g/wAdqcuJhAgFay9n60RqtV6kpPnILEA7j3Hp6MthQ=="
                         },
                         {
                             "name" : "search_account",
@@ -305,11 +308,11 @@
                         },
                         {
                             "name" : "video_indexer_account_id",
-                            "value" : ""
+                            "value" : "af0732ef-67f7-45ba-958f-456083ae936a"
                         },
                         {
                             "name" : "video_indexer_api_key",
-                            "value" : ""
+                            "value" : "[parameters('videoIndexerApiKey')]"
                         },
                         {
                             "name" : "video_indexer_endpoint",
