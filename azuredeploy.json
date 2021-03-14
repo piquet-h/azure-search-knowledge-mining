@@ -289,7 +289,7 @@
                         }, 
                         {
                             "name": "function_url",
-                            "value" : "https://kmvi-function-app.azurewebsites.net/api/video-indexer-callback?code=wm6Y7aUgOOS5g/wAdqcuJhAgFay9n60RqtV6kpPnILEA7j3Hp6MthQ=="
+                            "value" : "https://kmvi-function-app.azurewebsites.net/api/video-indexer-callback"
                         },
                         {
                             "name" : "search_account",

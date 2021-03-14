@@ -2,7 +2,7 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "authLevel": "function",
+      "authLevel": "aononymous",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
