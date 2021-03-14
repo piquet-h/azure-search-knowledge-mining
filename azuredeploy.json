@@ -321,7 +321,7 @@
                         },
                         {
                             "name" : "video_indexer_location",
-                            "value" : "Australia East"
+                            "value" : "trial"
                         },
                         {
                             "name" : "video_indexer_location_url_prefix",
