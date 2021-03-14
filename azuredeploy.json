@@ -297,7 +297,7 @@
                         },
                         {
                             "name" : "search_index",
-                            "value" : ""
+                            "value" : "conversational-index"
                         },
                         {
                             "name" : "DEBUG",
