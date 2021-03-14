@@ -300,6 +300,10 @@
                             "value" : ""
                         },
                         {
+                            "name" : "DEBUG",
+                            "value" : true
+                        },
+                        {
                             "name" : "search_api_key",
                             "value" : "[listQueryKeys(resourceId('Microsoft.Search/searchServices', variables('searchServiceName')), '2015-08-19' ).value[0].key]"
                         },
