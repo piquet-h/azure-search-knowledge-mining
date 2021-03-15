@@ -15,12 +15,14 @@ namespace CognitiveSearch.UI.Controllers
     {
         private IConfiguration _configuration { get; set; }
         private DocumentSearchClient _docSearch { get; set; }
+        private DocumentSearchClient _timeReferenceSearch { get; set; }
         private string _configurationError { get; set; }
 
         public HomeController(IConfiguration configuration)
         {
             _configuration = configuration;
             InitializeDocSearch();
+
         }
 
         private void InitializeDocSearch()
