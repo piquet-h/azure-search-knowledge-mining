@@ -250,6 +250,9 @@ function UpdateResults(data) {
             name = "";
         }
 
+        if (document["video_indexer_url"] !== undefined) {
+            icon = "ms-Icon--Video";
+        }
 
         if (path !== null) {
             var classList = "results-div ";

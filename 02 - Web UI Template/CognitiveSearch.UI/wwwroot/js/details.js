@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 // Details
+
 function ShowDocument(id) {
     $.post('/home/getdocumentbyid',
         {
@@ -174,7 +175,21 @@ function GetFileHTML(data, result) {
     var filename = result.metadata_storage_name; // blob filename
     var path = data.decodedPath + data.token; // direct path to blob with auth token
 
-    if (path != null) {
+    video_indexer_url = data.result.video_indexer_url;
+
+    if (video_indexer_url !== null && video_indexer_url !== undefined) {//Implement check on metadata to identify video coming from video indexer
+        srcPlayer = video_indexer_url;
+        time_reference = data.result.time_reference ? data.result.time_reference : 0;
+        srcPlayer += '?t=' + time_reference;
+
+        srcInsights = video_indexer_url.replace("videoindexer.ai/embed/player/", "videoindexer.ai/embed/insights/");
+
+        //fileContainerHTML = `<iframe class="file-container" src="${src}" frameborder = "0" allowfullscreen></iframe>`;
+
+        fileContainerHTML = `<iframe class="col-md-7 col-sm-12" src="${srcPlayer}" frameborder="0" allowfullscreen style="height: 50%"></iframe>
+            <iframe class="col-md-5 col-sm-12" src="${srcInsights}" frameborder="0" allowfullscreen style="height: 100%"></iframe>
+            <script src="https://breakdown.blob.core.windows.net/public/vb.widgets.mediator.js"></script>`;
+    } else if (path != null) {
         var pathLower = path.toLowerCase();
 
         if (pathLower.includes(".pdf")) {
