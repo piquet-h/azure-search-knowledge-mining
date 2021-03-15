@@ -11,19 +11,19 @@ namespace CognitiveSearch.UI
         private string[] facets = new string[]
         {
             // Add UI facets here in order
-            //"people", 
-            //"locations",
-            //"organizations",
-            //"keyphrases"
+            // "people", 
+            // "locations",
+            // "organizations",
+            // "keyphrases"
         };
 
         private string[] tags = new string[]
         {
             // Add tags fields here in order
-            //"people", 
-            //"locations",
-            //"organizations",
-            //"keyphrases"
+            // "people", 
+            // "locations",
+            // "organizations",
+            // "keyphrases"
         };
 
         private string[] resultFields = new string[]
