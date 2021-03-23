@@ -169,7 +169,7 @@
             "properties": {
                 "serverFarmId": "[variables('hostingPlanName')]",
                 "siteConfig" : {
-                    "linuxFxVersion" : "DOTNETCORE|3.1",
+                    "linuxFxVersion" : "DOTNET|5.0",
                     "metadata": [
 						{
 							"name": "CURRENT_STACK",
