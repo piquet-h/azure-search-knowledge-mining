@@ -11,7 +11,7 @@ namespace CognitiveSearch.UI
         private string[] facets = new string[]
         {
             // Add UI facets here in order
-            // "people", 
+            "namedpeople", 
             "namedLocations",
             // "organizations",
             "keywords"
@@ -20,8 +20,9 @@ namespace CognitiveSearch.UI
         private string[] tags = new string[]
         {
             // Add tags fields here in order
+            "namedPeople",
             "labels", 
-            // "locations",
+            "namedLocations",
             // "organizations",
             // "keywords"
         };
@@ -33,7 +34,9 @@ namespace CognitiveSearch.UI
             "metadata_storage_name",
             "metadata_title",
             "video_indexer_url",
-
+            "labels",
+            "namedPeople",
+            "namedLocations",
             // Add fields needed to display results cards
 
             // NOTE: if you customize the resultFields, be sure to include metadata_storage_name,
