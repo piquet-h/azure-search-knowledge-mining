@@ -11,7 +11,7 @@ namespace CognitiveSearch.UI
         private string[] facets = new string[]
         {
             // Add UI facets here in order
-            "namedpeople", 
+            "namedPeople", 
             "namedLocations",
             // "organizations",
             "keywords"
